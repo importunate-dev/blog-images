@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow2" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#2B579A">PostgreSQL 페이지 구조 (8KB)</text>
+
+  <!-- 페이지 박스 -->
+  <rect x="50" y="45" width="600" height="230" rx="8" fill="#FAFAFA" stroke="#2B579A" stroke-width="2" filter="url(#shadow2)"/>
+  <text x="350" y="70" text-anchor="middle" font-size="13" fill="#2B579A" font-weight="bold">하나의 8KB 페이지</text>
+
+  <!-- 행들 -->
+  <rect x="70" y="85" width="130" height="55" rx="4" fill="#E8F0FE" stroke="#2B579A" stroke-width="1"/>
+  <text x="135" y="107" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">고객 행 1</text>
+  <text x="135" y="125" text-anchor="middle" font-size="10" fill="#666">~200 바이트</text>
+
+  <rect x="210" y="85" width="130" height="55" rx="4" fill="#E8F0FE" stroke="#2B579A" stroke-width="1"/>
+  <text x="275" y="107" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">고객 행 2</text>
+  <text x="275" y="125" text-anchor="middle" font-size="10" fill="#666">~200 바이트</text>
+
+  <rect x="350" y="85" width="130" height="55" rx="4" fill="#E8F0FE" stroke="#2B579A" stroke-width="1"/>
+  <text x="415" y="107" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">고객 행 3</text>
+  <text x="415" y="125" text-anchor="middle" font-size="10" fill="#666">~200 바이트</text>
+
+  <rect x="490" y="85" width="50" height="55" rx="4" fill="#E0E0E0" stroke="#999" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="515" y="115" text-anchor="middle" font-size="20" fill="#999">...</text>
+
+  <rect x="550" y="85" width="80" height="55" rx="4" fill="#E8F0FE" stroke="#2B579A" stroke-width="1"/>
+  <text x="590" y="107" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">행 ~38</text>
+  <text x="590" y="125" text-anchor="middle" font-size="10" fill="#666">~200B</text>
+
+  <!-- 설명 -->
+  <text x="350" y="170" text-anchor="middle" font-size="12" fill="#555">한 페이지에 약 35~40개의 고객 행이 들어갑니다</text>
+
+  <!-- 비교 -->
+  <rect x="70" y="190" width="270" height="70" rx="6" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  <text x="205" y="212" text-anchor="middle" font-size="12" fill="#2E7D32" font-weight="bold">행이 작을수록</text>
+  <text x="205" y="230" text-anchor="middle" font-size="11" fill="#2E7D32">→ 페이지당 더 많은 행</text>
+  <text x="205" y="248" text-anchor="middle" font-size="11" fill="#2E7D32">→ 캐시 효율 높음</text>
+
+  <rect x="360" y="190" width="270" height="70" rx="6" fill="#FFF3E0" stroke="#FF9800" stroke-width="1"/>
+  <text x="495" y="212" text-anchor="middle" font-size="12" fill="#E65100" font-weight="bold">행이 클수록</text>
+  <text x="495" y="230" text-anchor="middle" font-size="11" fill="#E65100">→ 페이지당 적은 행</text>
+  <text x="495" y="248" text-anchor="middle" font-size="11" fill="#E65100">→ 더 많은 디스크 I/O 필요</text>
+</svg>

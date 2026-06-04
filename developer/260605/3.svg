@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 320" font-family="Arial, sans-serif">
+  <defs>
+    <filter id="shadow3" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2B579A"/>
+    </marker>
+  </defs>
+
+  <text x="375" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#2B579A">MVCC: UPDATE 시 일어나는 일</text>
+
+  <!-- BEFORE -->
+  <text x="150" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#555">① UPDATE 전</text>
+  <rect x="30" y="68" width="240" height="80" rx="6" fill="#FAFAFA" stroke="#999" stroke-width="1" filter="url(#shadow3)"/>
+  <text x="40" y="88" font-size="10" fill="#999">페이지 내부</text>
+  <rect x="45" y="98" width="210" height="35" rx="4" fill="#E8F0FE" stroke="#2B579A" stroke-width="1"/>
+  <text x="150" y="118" text-anchor="middle" font-size="11" fill="#333">고객 A | 적립금: 1,000원 | ...</text>
+
+  <!-- ARROW -->
+  <line x1="290" y1="108" x2="360" y2="108" stroke="#2B579A" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="325" y="98" text-anchor="middle" font-size="11" fill="#2B579A" font-weight="bold">UPDATE</text>
+
+  <!-- AFTER -->
+  <text x="545" y="55" text-anchor="middle" font-size="13" font-weight="bold" fill="#555">② UPDATE 후</text>
+  <rect x="380" y="68" width="350" height="130" rx="6" fill="#FAFAFA" stroke="#999" stroke-width="1" filter="url(#shadow3)"/>
+  <text x="390" y="88" font-size="10" fill="#999">페이지 내부</text>
+
+  <!-- Dead tuple -->
+  <rect x="395" y="98" width="210" height="35" rx="4" fill="#FFCDD2" stroke="#E53935" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="500" y="113" text-anchor="middle" font-size="11" fill="#C62828">고객 A | 적립금: 1,000원 | ...</text>
+  <text x="500" y="126" text-anchor="middle" font-size="9" fill="#E53935" font-weight="bold">Dead Tuple (200B 차지)</text>
+
+  <!-- Live tuple -->
+  <rect x="395" y="148" width="210" height="35" rx="4" fill="#C8E6C9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="500" y="163" text-anchor="middle" font-size="11" fill="#1B5E20">고객 A | 적립금: 2,000원 | ...</text>
+  <text x="500" y="176" text-anchor="middle" font-size="9" fill="#43A047" font-weight="bold">새 버전 (Live Tuple)</text>
+
+  <!-- 설명 박스 -->
+  <rect x="30" y="220" width="690" height="85" rx="8" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+  <text x="375" y="245" text-anchor="middle" font-size="12" fill="#E65100" font-weight="bold">핵심: 4바이트(적립금)만 바꿔도, 200바이트짜리 Dead Tuple이 통째로 남습니다</text>
+  <text x="375" y="268" text-anchor="middle" font-size="11" fill="#795548">테이블 분리 시 → 49바이트짜리 작은 Dead Tuple만 발생</text>
+  <text x="375" y="288" text-anchor="middle" font-size="11" fill="#795548">하지만 변경 빈도가 낮으면 (주당 0.33%) 이 차이는 체감되지 않습니다</text>
+</svg>
